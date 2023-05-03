@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "191839918285",
+    "project_id": "bus-track-flut",
+    "storage_bucket": "bus-track-flut.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:191839918285:android:3b9166d83108565e17f184",
+        "android_client_info": {
+          "package_name": "com.bustrckf.bustrack"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "191839918285-d338maoehkro2t6h1dk0rgk3rli869dd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9sZTWzGHvAIGuOgMUD34Gq46P6qABEK0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "191839918285-d338maoehkro2t6h1dk0rgk3rli869dd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
