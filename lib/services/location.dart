@@ -10,7 +10,7 @@ class LocationService {
     return serviceEnabled;
   }
 
-  getLocationPermition() async {
+  getLocationPermission() async {
     var permissionGranted = await location.hasPermission();
     if (permissionGranted == PermissionStatus.denied) {
       permissionGranted = await location.requestPermission();
@@ -23,7 +23,7 @@ class LocationService {
   }
 
   Stream<LocationData>? get onlocationChanges {
-    getLocationPermition();
+    getLocationPermission();
     getLocationService();
     return location.onLocationChanged;
   }

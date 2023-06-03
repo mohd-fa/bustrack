@@ -36,7 +36,7 @@ class _SignInState extends State<SignIn> {
         ? const Loading()
         : Scaffold(
             appBar: AppBar(
-              title: const Text('Sign up to Brew Crew'),
+              title: const Text('Sign up to Bus Track Flut'),
             ),
             body: Container(
               padding:

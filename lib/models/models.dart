@@ -2,5 +2,14 @@ class AppUser {
   final String uid;
   final int userType;
   final String? admin;
-  AppUser({required this.uid, required this.userType, this.admin});
+  final String? name;
+  final String? clas;
+  final String? div;
+  AppUser(
+      {required this.uid,
+      required this.userType,
+      this.admin,
+      this.name,
+      this.clas,
+      this.div});
 }

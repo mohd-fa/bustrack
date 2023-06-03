@@ -1,8 +1,11 @@
+import 'package:bustrack/screens/attendance/attendancelist.dart';
+import 'package:bustrack/screens/home/attentance_button.dart';
+import 'package:bustrack/screens/home/profile.dart';
+import 'package:bustrack/screens/home/today.dart';
+import 'package:bustrack/screens/home/location_button.dart';
 import 'package:bustrack/screens/map/currentloc.dart';
 import 'package:bustrack/services/auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:bustrack/models/models.dart';
 
 class Home extends StatelessWidget {
   Home({super.key});
@@ -28,35 +31,22 @@ class Home extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          GestureDetector(
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (ctx) => Provider<AppUser>.value(
-                      value: Provider.of<AppUser>(context),
-                      child: const CurLoc())),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            const ProfileCard(),
+            TodayCard(),
+            Row(
+              children: const [
+                LocationButton(pointer: CurLoc()),
+                AttentanceButton(
+                  pointer: AttendanceList(),
+                )
+              ],
             ),
-            child: Center(
-              child: Card(
-                margin: const EdgeInsets.all(8),
-                color: Colors.blue,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(children: const [
-                    Text('Current Bus Location',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15)),
-                    Icon(Icons.directions_bus, color: Colors.white)
-                  ]),
-                ),
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

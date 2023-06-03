@@ -35,6 +35,9 @@ Widget futureBuilder(uid) => FutureBuilder(
                     create: (_) => AppUser(
                         admin: snapshot.data['admin'],
                         userType: snapshot.data['type'],
+                        name: snapshot.data['name'],
+                        clas: snapshot.data['class'],
+                        div: snapshot.data['div'],
                         uid: uid))
               ],
               builder: (context, child) => context.read<AppUser>().userType == 0

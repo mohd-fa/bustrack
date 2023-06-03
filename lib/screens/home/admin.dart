@@ -1,7 +1,10 @@
 import 'dart:async';
 
 import 'package:bustrack/models/models.dart';
+import 'package:bustrack/screens/attendance/attendancesheet.dart';
 import 'package:bustrack/screens/authenticate/register.dart';
+import 'package:bustrack/screens/home/attentance_button.dart';
+import 'package:bustrack/screens/home/location_button.dart';
 import 'package:bustrack/services/auth.dart';
 import 'package:bustrack/services/database.dart';
 import 'package:bustrack/services/location.dart';
@@ -45,27 +48,6 @@ class _AdminHomeState extends State<AdminHome> {
       ),
       body: Column(
         children: [
-          GestureDetector(
-            onTap: () => Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const AdminCurLoc())),
-            child: Center(
-              child: Card(
-                margin: const EdgeInsets.all(8),
-                color: Colors.blue,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(children: const [
-                    Text('Current Bus Location',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15)),
-                    Icon(Icons.directions_bus, color: Colors.white)
-                  ]),
-                ),
-              ),
-            ),
-          ),
           ElevatedButton.icon(
             icon: const Icon(Icons.person_add_alt_1_rounded),
             label: const Text('Register new User'),
@@ -105,6 +87,12 @@ class _AdminHomeState extends State<AdminHome> {
           ),
           Text(errorMessage ?? '',
               style: const TextStyle(color: Colors.red, fontSize: 14.0)),
+          Row(
+            children: const [
+              LocationButton(pointer: AdminCurLoc()),
+              AttentanceButton(pointer: AttendanceSheet()),
+            ],
+          ),
         ],
       ),
     );

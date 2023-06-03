@@ -1,3 +1,4 @@
+import 'package:bustrack/screens/loading.dart';
 import 'package:bustrack/services/database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -24,8 +25,10 @@ class _MapWidgetState extends State<MapWidget> {
     return StreamBuilder(
         stream: db.getMap,
         builder: (context, snapshot) {
-          if (!snapshot.hasData ||
-              timeDiff(snapshot.data!.docs[0]['timestamp'] as Timestamp) > 30) {
+          if (!snapshot.hasData) {
+            return const Loading();
+          }
+          if (timeDiff(snapshot.data!.docs[0]['timestamp'] as Timestamp) > 30) {
             return Center(
               child: Column(children: [
                 const Text('Bus Offline'),
@@ -64,12 +67,14 @@ class _MapWidgetState extends State<MapWidget> {
                   )),
               AttributionWidget(
                 attributionBuilder: (context) =>
-                    Text('flutter_map | © OpenStreetMap'),
+                    const Text('flutter_map | © OpenStreetMap'),
                 alignment: Alignment.bottomCenter,
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text("Last Updated: ${timeDiff(snapshot.data!.docs[0]['timestamp'] as Timestamp)} mins ago.",style: TextStyle(fontWeight: FontWeight.bold)),
+                child: Text(
+                    "Last Updated: ${timeDiff(snapshot.data!.docs[0]['timestamp'] as Timestamp)} mins ago.",
+                    style: const TextStyle(fontWeight: FontWeight.bold)),
               )
             ],
             children: [

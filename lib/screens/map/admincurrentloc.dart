@@ -21,10 +21,7 @@ class _AdminCurLocState extends State<AdminCurLoc> {
       ),
       body: Column(
         children: const [
-          SizedBox(
-            height: 500,
-            child: AdminMapWidget(),
-          ),
+          AdminMapWidget(),
         ],
       ),
     );

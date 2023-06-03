@@ -21,14 +21,25 @@ class _RegisterState extends State<Register> {
       TextEditingController();
   final TextEditingController _passwordTextEditingController =
       TextEditingController();
+  final TextEditingController _nameTextEditingController =
+      TextEditingController();
+  final TextEditingController _classTextEditingController =
+      TextEditingController();
+  final TextEditingController _divTextEditingController =
+      TextEditingController();
   String? errorMessage;
   bool loading = false;
 
   Future registerWithEmailAndPassword(String admin) async {
     try {
       errorMessage = '';
-      await _auth.registerWithEmailAndPassword(_emailTextEditingController.text,
-          _passwordTextEditingController.text, admin);
+      await _auth.registerWithEmailAndPassword(
+          _emailTextEditingController.text,
+          _passwordTextEditingController.text,
+          _nameTextEditingController.text,
+          _classTextEditingController.text,
+          _divTextEditingController.text,
+          admin);
     } on FirebaseAuthException catch (e) {
       errorMessage = e.message;
     }
@@ -46,7 +57,7 @@ class _RegisterState extends State<Register> {
                 onPressed: () => Navigator.pop(context),
               ),
             ),
-            body: Container(
+            body: SingleChildScrollView(
               padding:
                   const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
               child: Form(
@@ -55,6 +66,7 @@ class _RegisterState extends State<Register> {
                   children: <Widget>[
                     const SizedBox(height: 20.0),
                     TextFormField(
+                      keyboardType: TextInputType.emailAddress,
                       decoration: const InputDecoration(labelText: 'Email'),
                       validator: (val) =>
                           val!.isEmpty ? 'Enter an email' : null,
@@ -68,6 +80,31 @@ class _RegisterState extends State<Register> {
                           ? 'Enter a password 6+ chars long'
                           : null,
                       controller: _passwordTextEditingController,
+                    ),
+                    TextFormField(
+                      decoration: const InputDecoration(labelText: 'Name'),
+                      keyboardType: TextInputType.name,
+                      validator: (val) =>
+                          val!.isEmpty ? 'Enter name of the student.' : null,
+                      controller: _nameTextEditingController,
+                    ),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                          labelText: 'Class', counterText: ''),
+                      keyboardType: TextInputType.number,
+                      maxLength: 1,
+                      validator: (val) =>
+                          val!.isEmpty ? 'Enter class of student.' : null,
+                      controller: _classTextEditingController,
+                    ),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                          labelText: 'Division', counterText: ''),
+                      keyboardType: TextInputType.name,
+                      maxLength: 1,
+                      validator: (val) =>
+                          val!.isEmpty ? 'Enter division of student.' : null,
+                      controller: _divTextEditingController,
                     ),
                     const SizedBox(height: 20.0),
                     ElevatedButton(

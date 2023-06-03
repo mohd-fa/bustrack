@@ -1,10 +1,8 @@
-import 'dart:async';
-
 import 'package:bustrack/screens/wrapper.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-Future<void> main() async {
+main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp().then((app) => Firebase.initializeApp(
         name: 'sec',
