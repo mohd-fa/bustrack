@@ -7,9 +7,14 @@ import 'package:bustrack/screens/map/currentloc.dart';
 import 'package:bustrack/services/auth.dart';
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   Home({super.key});
 
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   final AuthService _auth = AuthService();
 
   Future signOut() async {
@@ -31,22 +36,30 @@ class Home extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            const ProfileCard(),
-            TodayCard(),
-            Row(
-              children: const [
-                LocationButton(pointer: CurLoc()),
-                AttentanceButton(
-                  pointer: AttendanceList(),
-                )
+      body: RefreshIndicator(
+        onRefresh: () async {
+          await Future.delayed(Duration(milliseconds: 200));
+          setState(() {});
+        },
+        child: ListView(children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                const ProfileCard(),
+                TodayCard(),
+                Row(
+                  children: const [
+                    LocationButton(pointer: CurLoc()),
+                    AttentanceButton(
+                      pointer: AttendanceList(),
+                    )
+                  ],
+                ),
               ],
             ),
-          ],
-        ),
+          ),
+        ]),
       ),
     );
   }
