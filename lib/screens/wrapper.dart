@@ -41,7 +41,7 @@ Widget futureBuilder(uid) => FutureBuilder(
                         uid: uid))
               ],
               builder: (context, child) => context.read<AppUser>().userType == 0
-                  ? Home()
+                  ? const Home()
                   : const AdminHome(),
             )
           : const Loading();
