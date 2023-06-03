@@ -8,7 +8,7 @@ import 'package:bustrack/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
-  Home({super.key});
+  const Home({super.key});
 
   @override
   State<Home> createState() => _HomeState();
@@ -38,7 +38,7 @@ class _HomeState extends State<Home> {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          await Future.delayed(Duration(milliseconds: 200));
+          await Future.delayed(const Duration(milliseconds: 200));
           setState(() {});
         },
         child: ListView(children: [
