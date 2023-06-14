@@ -29,6 +29,8 @@ class _RegisterState extends State<Register> {
       TextEditingController();
   String? errorMessage;
   bool loading = false;
+  RegExp alpha = RegExp('^[a-zA-Z]+');
+  RegExp nums = RegExp('^[0-9]+');
 
   Future registerWithEmailAndPassword(String admin) async {
     try {
@@ -69,7 +71,7 @@ class _RegisterState extends State<Register> {
                       keyboardType: TextInputType.emailAddress,
                       decoration: const InputDecoration(labelText: 'Email'),
                       validator: (val) =>
-                          val!.isEmpty ? 'Enter an email' : null,
+                          val!.isEmpty ? 'Enter an valid email' : null,
                       controller: _emailTextEditingController,
                     ),
                     const SizedBox(height: 20.0),
@@ -85,7 +87,7 @@ class _RegisterState extends State<Register> {
                       decoration: const InputDecoration(labelText: 'Name'),
                       keyboardType: TextInputType.name,
                       validator: (val) =>
-                          val!.isEmpty ? 'Enter name of the student.' : null,
+                          val!.isEmpty || val.contains(alpha) ? 'Enter a valid name for the student.' : null,
                       controller: _nameTextEditingController,
                     ),
                     TextFormField(
@@ -94,7 +96,7 @@ class _RegisterState extends State<Register> {
                       keyboardType: TextInputType.number,
                       maxLength: 1,
                       validator: (val) =>
-                          val!.isEmpty ? 'Enter class of student.' : null,
+                          val!.isEmpty || val.contains(nums) ? 'Enter class of student.' : null,
                       controller: _classTextEditingController,
                     ),
                     TextFormField(
@@ -103,7 +105,7 @@ class _RegisterState extends State<Register> {
                       keyboardType: TextInputType.name,
                       maxLength: 1,
                       validator: (val) =>
-                          val!.isEmpty ? 'Enter division of student.' : null,
+                          val!.isEmpty || val.contains(alpha) ? 'Enter division of student.' : null,
                       controller: _divTextEditingController,
                     ),
                     const SizedBox(height: 20.0),

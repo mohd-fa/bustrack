@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
+import 'package:bustrack/services/location.dart';
 
 class DataBaseServices {
+  final location = LocationService();
+
   final CollectionReference user =
       FirebaseFirestore.instance.collection('user');
 
@@ -25,18 +28,19 @@ class DataBaseServices {
 
   updateAttendance(id, docexists, isPickup) async {
     String time = isPickup ? 'pickup' : 'drop';
+    final locdata = await location.getLocation;
     if (docexists) {
       user
           .doc(id)
           .collection('attendance')
           .doc(DateFormat('yyyy-MM-dd').format(DateTime.now()))
-          .update({time: DateFormat('hh:mm').format(DateTime.now())});
+          .update({time: DateFormat('hh:mm').format(DateTime.now()), '${time}latitude': locdata.latitude,'${time}longitude': locdata.longitude});
     } else {
       user
           .doc(id)
           .collection('attendance')
           .doc(DateFormat('yyyy-MM-dd').format(DateTime.now()))
-          .set({time: DateFormat('hh:mm').format(DateTime.now())});
+          .set({time: DateFormat('hh:mm').format(DateTime.now()),  '${time}latitude': locdata.latitude,'${time}longitude': locdata.longitude});
     }
   }
 

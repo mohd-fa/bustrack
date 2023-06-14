@@ -27,4 +27,6 @@ class LocationService {
     getLocationService();
     return location.onLocationChanged;
   }
+  Future<LocationData> get getLocation => location.getLocation();
+
 }
