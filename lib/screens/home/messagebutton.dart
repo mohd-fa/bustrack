@@ -1,11 +1,10 @@
-import 'package:bustrack/screens/map/currentloc.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:bustrack/models/models.dart';
 
-class LocationButton extends StatelessWidget {
+class MessageButton extends StatelessWidget {
   final Widget pointer;
-  const LocationButton({super.key, required this.pointer});
+  const MessageButton({super.key, required this.pointer});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +15,7 @@ class LocationButton extends StatelessWidget {
           context,
           MaterialPageRoute(
               builder: (ctx) => Provider<AppUser>.value(
-                  value: Provider.of<AppUser>(context), child: const CurLoc())),
+                  value: Provider.of<AppUser>(context), child: pointer)),
         ),
         child: Card(
           shape:
@@ -28,7 +27,7 @@ class LocationButton extends StatelessWidget {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  Text('Bus Location',
+                  Text('Message',
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -37,7 +36,7 @@ class LocationButton extends StatelessWidget {
                     height: 10,
                   ),
                   Icon(
-                    Icons.directions_bus,
+                    Icons.message,
                     color: Colors.blue,
                     size: 35,
                   )

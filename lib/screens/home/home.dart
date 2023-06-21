@@ -1,9 +1,11 @@
 import 'package:bustrack/screens/attendance/attendancelist.dart';
-import 'package:bustrack/screens/home/attentance_button.dart';
+import 'package:bustrack/screens/home/attentancebutton.dart';
+import 'package:bustrack/screens/home/messagebutton.dart';
 import 'package:bustrack/screens/home/profile.dart';
 import 'package:bustrack/screens/home/today.dart';
-import 'package:bustrack/screens/home/location_button.dart';
+import 'package:bustrack/screens/home/locationbutton.dart';
 import 'package:bustrack/screens/map/currentloc.dart';
+import 'package:bustrack/screens/messagerecieve.dart';
 import 'package:bustrack/services/auth.dart';
 import 'package:flutter/material.dart';
 
@@ -56,6 +58,13 @@ class _HomeState extends State<Home> {
                     )
                   ],
                 ),
+                Row(
+                  children: const [
+                    MessageButton(
+                      pointer: MessageReceive(),
+                    ),
+                  ],
+                )
               ],
             ),
           ),

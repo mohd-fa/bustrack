@@ -86,8 +86,9 @@ class _RegisterState extends State<Register> {
                     TextFormField(
                       decoration: const InputDecoration(labelText: 'Name'),
                       keyboardType: TextInputType.name,
-                      validator: (val) =>
-                          val!.isEmpty || val.contains(alpha) ? 'Enter a valid name for the student.' : null,
+                      validator: (val) => val!.isEmpty || !val.contains(alpha)
+                          ? 'Enter a valid name for the student.'
+                          : null,
                       controller: _nameTextEditingController,
                     ),
                     TextFormField(
@@ -95,8 +96,9 @@ class _RegisterState extends State<Register> {
                           labelText: 'Class', counterText: ''),
                       keyboardType: TextInputType.number,
                       maxLength: 1,
-                      validator: (val) =>
-                          val!.isEmpty || val.contains(nums) ? 'Enter class of student.' : null,
+                      validator: (val) => val!.isEmpty || !val.contains(nums)
+                          ? 'Enter class of student.'
+                          : null,
                       controller: _classTextEditingController,
                     ),
                     TextFormField(
@@ -104,8 +106,9 @@ class _RegisterState extends State<Register> {
                           labelText: 'Division', counterText: ''),
                       keyboardType: TextInputType.name,
                       maxLength: 1,
-                      validator: (val) =>
-                          val!.isEmpty || val.contains(alpha) ? 'Enter division of student.' : null,
+                      validator: (val) => val!.isEmpty || !val.contains(alpha)
+                          ? 'Enter division of student.'
+                          : null,
                       controller: _divTextEditingController,
                     ),
                     const SizedBox(height: 20.0),

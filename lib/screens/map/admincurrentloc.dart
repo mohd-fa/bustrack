@@ -19,11 +19,7 @@ class _AdminCurLocState extends State<AdminCurLoc> {
         ),
         title: const Text('Current Location'),
       ),
-      body: Column(
-        children: const [
-          AdminMapWidget(),
-        ],
-      ),
+      body: const AdminMapWidget(),
     );
   }
 }

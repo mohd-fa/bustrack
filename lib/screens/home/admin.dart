@@ -3,8 +3,10 @@ import 'dart:async';
 import 'package:bustrack/models/models.dart';
 import 'package:bustrack/screens/attendance/attendancesheet.dart';
 import 'package:bustrack/screens/authenticate/register.dart';
-import 'package:bustrack/screens/home/attentance_button.dart';
-import 'package:bustrack/screens/home/location_button.dart';
+import 'package:bustrack/screens/home/attentancebutton.dart';
+import 'package:bustrack/screens/home/locationbutton.dart';
+import 'package:bustrack/screens/home/messagebutton.dart';
+import 'package:bustrack/screens/messagesentpage.dart';
 import 'package:bustrack/services/auth.dart';
 import 'package:bustrack/services/database.dart';
 import 'package:bustrack/services/location.dart';
@@ -93,6 +95,13 @@ class _AdminHomeState extends State<AdminHome> {
               AttentanceButton(pointer: AttendanceSheet()),
             ],
           ),
+          Row(
+            children: const [
+              MessageButton(
+                pointer: MessageSent(),
+              ),
+            ],
+          )
         ],
       ),
     );

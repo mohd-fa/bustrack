@@ -34,13 +34,21 @@ class DataBaseServices {
           .doc(id)
           .collection('attendance')
           .doc(DateFormat('yyyy-MM-dd').format(DateTime.now()))
-          .update({time: DateFormat('hh:mm').format(DateTime.now()), '${time}latitude': locdata.latitude,'${time}longitude': locdata.longitude});
+          .update({
+        time: DateFormat('hh:mm').format(DateTime.now()),
+        '${time}latitude': locdata.latitude,
+        '${time}longitude': locdata.longitude
+      });
     } else {
       user
           .doc(id)
           .collection('attendance')
           .doc(DateFormat('yyyy-MM-dd').format(DateTime.now()))
-          .set({time: DateFormat('hh:mm').format(DateTime.now()),  '${time}latitude': locdata.latitude,'${time}longitude': locdata.longitude});
+          .set({
+        time: DateFormat('hh:mm').format(DateTime.now()),
+        '${time}latitude': locdata.latitude,
+        '${time}longitude': locdata.longitude
+      });
     }
   }
 
@@ -61,6 +69,19 @@ class DataBaseServices {
       'longitude': longitude,
       'timestamp': Timestamp.now()
     }, SetOptions(merge: true));
+  }
+
+  Future uploadMessage(String message) async {
+    return await FirebaseFirestore.instance.collection('message').doc().set(
+      {'message': message, 'timestamp': Timestamp.now()},
+    );
+  }
+
+  Stream<QuerySnapshot> getMessage() {
+    return FirebaseFirestore.instance
+        .collection('message')
+        .orderBy('timestamp', descending: true)
+        .snapshots();
   }
 
   Stream get getMap => adminLoc.snapshots();
