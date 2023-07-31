@@ -63,6 +63,17 @@ class DataBaseServices {
     }
   }
 
+  Stream<Map> getrAttendance(id, DateTime date) async* {
+    late DocumentSnapshot doc;
+    await for (doc in user
+        .doc(id)
+        .collection('attendance')
+        .doc(DateFormat('yyyy-MM-dd').format(date))
+        .snapshots()) {
+      yield doc.data() as Map;
+    }
+  }
+
   Future updateLoc(String uid, double? latitude, double? longitude) async {
     return await adminLoc.doc(uid).set({
       'latitude': latitude,

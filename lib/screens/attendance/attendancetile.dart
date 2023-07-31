@@ -33,7 +33,7 @@ class _AttendanceTileState extends State<AttendanceTile> {
                     widget.attendanceSnap.hasData, widget.isPickup);
               },
             )
-          : null,
+          : TextButton(onPressed: null, style: const ButtonStyle(foregroundColor: MaterialStatePropertyAll(Colors.green)),child: Text( widget.attendanceSnap.data![widget.isPickup?'pickup':'drop'] ), ),
       title: Text(
         widget.studentDoc['name'],
       ),
